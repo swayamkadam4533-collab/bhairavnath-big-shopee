@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#167344">
+  <title>BHAIRAVNATH BIG SHOPEE</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div>
+      <p class="eyebrow" data-i18n="pickupTag">STORE PICKUP • DELIVERY नाही</p>
+      <h1 id="storeName">BHAIRAVNATH BIG SHOPEE</h1>
+      <p id="storeAddress">दुकानाचा पत्ता Admin सेटिंग्जमध्ये जोडा</p>
+      <p id="storePhone"></p>
+    </div>
+    <div class="header-actions"><label class="language-label" for="languageSelect" data-i18n="language">Language</label><select id="languageSelect" aria-label="Choose language"><option value="mr">मराठी</option><option value="hi">हिन्दी</option><option value="en">English</option></select><button id="openAuthBtn" class="secondary" data-i18n="loginRegister">Login / Register</button></div>
+  </header>
+
+  <nav class="tabs" aria-label="मुख्य मेनू">
+    <button class="tab active" data-view="shop">Products</button>
+    <button class="tab" data-view="orders">माझ्या ऑर्डर्स</button>
+    <button class="tab" data-view="offers">Offers <span id="offerBadge" class="badge hidden">New</span></button>
+    <button class="tab" data-view="feedback">Feedback</button>
+    <button class="tab hidden" id="adminTab" data-view="admin">Admin</button>
+  </nav>
+
+  <main>
+    <section id="authPanel" class="panel hidden">
+      <div class="panel-head"><h2>Customer Login / Register</h2><button class="icon-btn" id="closeAuthBtn" aria-label="बंद करा">✕</button></div>
+      <p class="muted">तुझे स्वतंत्र खाते तयार कर किंवा Login कर.</p>
+      <label>नाव (Register साठी)<input id="authName" autocomplete="name" placeholder="तुझे पूर्ण नाव"></label>
+      <label>मोबाईल नंबर<input id="authPhone" inputmode="tel" autocomplete="tel" placeholder="मोबाईल नंबर"></label>
+      <label>Email<input id="authEmail" type="email" autocomplete="email" placeholder="name@example.com"></label>
+      <label>Password<input id="authPassword" type="password" autocomplete="current-password" minlength="6" placeholder="किमान 6 अक्षरे"></label>
+      <div class="button-row"><button id="registerBtn">Register</button><button id="loginBtn" class="secondary">Login</button><button id="logoutBtn" class="danger hidden">Logout</button></div>
+      <p id="authMessage" class="status" role="status"></p>
+    </section>
+
+    <section id="welcomeBar" class="welcome hidden">
+      <span id="welcomeText"></span><button id="logoutQuickBtn" class="text-button">Logout</button>
+    </section>
+
+    <section id="view-shop" class="view">
+      <div class="section-title"><div><h2>किराणा Products</h2><p class="muted">Admin ने उपलब्ध केलेल्या वस्तू व त्यांचे दर.</p></div><button id="cartToggleBtn" class="cart-button">Cart <span id="cartCount">0</span></button></div>
+      <input id="productSearch" class="search" placeholder="वस्तू शोधा..." aria-label="वस्तू शोधा">
+      <div id="productGrid" class="product-grid"><div class="empty">Firebase जोडल्यावर Products दिसतील.</div></div>
+      <section class="panel custom-request">
+        <h3>यादीत नसलेली वस्तू मागवा</h3>
+        <p class="muted">वस्तूचे नाव आणि प्रमाण लिहा. किंमत Admin मंजूर केल्यानंतरच निश्चित होईल.</p>
+        <label>वस्तूचे नाव<input id="customName" placeholder="उदा. विशिष्ट ब्रँडचे पीठ"></label>
+        <label>प्रमाण / Quantity<input id="customQty" placeholder="उदा. 1 किलो किंवा 2 पाकिटे"></label>
+        <button id="addCustomBtn">माझ्या Cart मध्ये जोडा</button>
+      </section>
+    </section>
+
+    <section id="view-orders" class="view hidden">
+      <h2>माझ्या ऑर्डर्स</h2><p class="muted">तुझ्या खात्यातील ऑर्डर्स इथे दिसतील.</p>
+      <div id="ordersList" class="stack"><div class="empty">ऑर्डर्स पाहण्यासाठी Login कर.</div></div>
+    </section>
+
+    <section id="view-offers" class="view hidden">
+      <h2>ऑफर्स आणि सूचना</h2><div id="offersList" class="stack"><div class="empty">सध्या ऑफर उपलब्ध नाही.</div></div>
+    </section>
+
+    <section id="view-feedback" class="view hidden">
+      <section class="panel">
+        <h2>Feedback / अभिप्राय</h2>
+        <p class="muted">तुझ्या अनुभवाबद्दल सांग. Feedback Admin ला दिसेल.</p>
+        <label>Rating
+          <select id="feedbackRating"><option value="5">★★★★★ - उत्कृष्ट</option><option value="4">★★★★ - चांगले</option><option value="3">★★★ - ठीक</option><option value="2">★★ - सुधारणा हवी</option><option value="1">★ - खराब</option></select>
+        </label>
+        <label>अभिप्राय<textarea id="feedbackText" rows="4" placeholder="तुझा अभिप्राय किंवा सूचना..."></textarea></label>
+        <button id="sendFeedbackBtn">Feedback पाठवा</button><p id="feedbackMessage" class="status"></p>
+      </section>
+    </section>
+
+    <section id="view-admin" class="view hidden">
+      <div class="section-title"><div><h2>Admin Dashboard</h2><p class="muted">फक्त अधिकृत Admin खात्यासाठी.</p></div><span class="pill" id="adminState">Admin</span></div>
+      <div class="stats-grid">
+        <div class="stat"><span>नोंदणीकृत ग्राहक</span><strong id="customerCount">—</strong></div>
+        <div class="stat"><span>एकूण Products</span><strong id="adminProductCount">—</strong></div>
+        <div class="stat"><span>एकूण Orders</span><strong id="adminOrderCount">—</strong></div>
+        <div class="stat"><span>Feedback</span><strong id="adminFeedbackCount">—</strong></div>
+      </div>
+      <section class="panel">
+        <h3>दुकानाची माहिती</h3>
+        <label>दुकानाचे नाव<input id="settingStoreName" placeholder="दुकानाचे नाव"></label>
+        <label>पत्ता<input id="settingStoreAddress" placeholder="पूर्ण पत्ता"></label>
+        <label>मोबाईल नंबर<input id="settingStorePhone" inputmode="tel" placeholder="दुकानाचा नंबर"></label>
+        <label>Google Maps लिंक<input id="settingMaps" type="url" placeholder="https://maps.google.com/..."></label>
+        <button id="saveSettingsBtn">दुकानाची माहिती सेव्ह करा</button><p id="settingsMessage" class="status"></p>
+      </section>
+      <section class="panel">
+        <h3 id="productFormTitle">Product जोडा</h3>
+        <input id="editProductId" type="hidden">
+        <label>वस्तूचे नाव<input id="productName" placeholder="उदा. तूर डाळ 1 किलो"></label>
+        <label>Category<input id="productCategory" placeholder="उदा. डाळी"></label>
+        <label>किंमत (₹)<input id="productPrice" type="number" min="0" step="0.01" inputmode="decimal" placeholder="उदा. 120"></label>
+        <label>Stock / प्रमाण<input id="productStock" type="number" min="0" step="1" inputmode="numeric" placeholder="उदा. 20"></label>
+        <label>Product फोटो<input id="productPhoto" type="file" accept="image/*"></label>
+        <label class="check-label"><input id="productAvailable" type="checkbox" checked> ग्राहकांना उपलब्ध दाखवा</label>
+        <div class="button-row"><button id="saveProductBtn">Product सेव्ह करा</button><button id="cancelProductEditBtn" class="secondary hidden">Edit रद्द करा</button></div>
+        <p id="productMessage" class="status"></p>
+      </section>
+      <section class="panel">
+        <h3>Products व्यवस्थापन</h3><input id="adminProductSearch" class="search" placeholder="Admin Products शोधा">
+        <div id="adminProductsList" class="stack"></div>
+      </section>
+      <section class="panel">
+        <h3>ऑर्डर्स आणि Pickup Status</h3><div id="adminOrdersList" class="stack"></div>
+      </section>
+      <section class="panel">
+        <h3>Custom Product Requests</h3><div id="customRequestsList" class="stack"></div>
+      </section>
+      <section class="panel">
+        <h3>Offer तयार करा</h3>
+        <label>Offer चे शीर्षक<input id="offerTitle" placeholder="उदा. साप्ताहिक ऑफर"></label>
+        <label>Offer चा मजकूर<textarea id="offerBody" rows="3" placeholder="ऑफरची माहिती"></textarea></label>
+        <label>शेवटची तारीख (पर्यायी)<input id="offerEndDate" type="date"></label>
+        <button id="publishOfferBtn">Offer Publish करा</button><p id="offerMessage" class="status"></p>
+        <div id="adminOffersList" class="stack"></div>
+      </section>
+      <section class="panel">
+        <h3>ग्राहक Feedback</h3><div id="adminFeedbackList" class="stack"></div>
+      </section>
+    </section>
+  </main>
+
+  <aside id="cartDrawer" class="cart-drawer hidden" aria-label="Cart">
+    <div class="panel-head"><h2>तुझा Cart</h2><button id="closeCartBtn" class="icon-btn">✕</button></div>
+    <div id="cartItems" class="stack"></div>
+    <div class="cart-total"><span>एकूण (निश्चित किंमती)</span><strong id="cartTotal">₹0</strong></div>
+    <p class="muted small">Custom requests ची किंमत Admin मंजूर करेपर्यंत एकूणात धरलेली नाही.</p>
+    <label>ऑर्डर नोट (पर्यायी)<textarea id="orderNote" rows="2" placeholder="उदा. संध्याकाळी Pickup"></textarea></label>
+    <p class="pickup-note">📍 फक्त Store Pickup — Delivery नाही. पैसे दुकानात Cash / UPI ने.</p>
+    <button id="placeOrderBtn" class="full">Pickup Order कन्फर्म करा</button><p id="cartMessage" class="status"></p>
+  </aside>
+  <div id="toast" class="toast hidden" role="status"></div>
+  <footer><p data-i18n="footerNote">Store Pickup Only • Cash / UPI at Store</p></footer>
+  <script src="i18n.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
