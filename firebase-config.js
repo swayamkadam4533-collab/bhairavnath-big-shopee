@@ -1,9 +1,9 @@
 // Firebase Console मधील Project settings > Your apps > Web app येथून माहिती भरा.
 export const firebaseConfig = {
-  apiKey: "PASTE_YOUR_FIREBASE_API_KEY",
-  authDomain: "PASTE_YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "PASTE_YOUR_PROJECT_ID",
-  storageBucket: "PASTE_YOUR_STORAGE_BUCKET",
-  messagingSenderId: "PASTE_YOUR_MESSAGING_SENDER_ID",
-  appId: "PASTE_YOUR_APP_ID"
+  apiKey:"AIzaSyB8WF2VYbYnySR55pQAusLJ68EVOgIAJWs",
+  authDomain:"bhairavnath-big-shopee.firebaseapp.com",
+  projectId:"bhairavnath-big-shopee",
+  storageBucket:"bhairavnath-big-shopee.firebasestorage.app",
+  messagingSenderId:"792604567365",
+  appId:"1:792604567365:web:1c24118cd0633c6178c02c",
 };
